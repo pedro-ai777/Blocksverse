@@ -70,14 +70,23 @@ body::before{background:#15171a}
 .fr{display:flex;align-items:center;gap:10px;background:var(--card);border-radius:12px;padding:8px;margin-bottom:6px}.fn{flex:1}.fn small{display:block;color:var(--mut)}
 .fr.mini{flex-direction:column;width:70px;flex:none;padding:6px;margin:0;background:none;text-align:center;font-size:11px;gap:4px}.mini small{display:none}
 .addf{display:flex;gap:6px}.addf input,#name2{background:var(--card);color:#fff;border:1px solid #4b4f57;border-radius:8px;padding:8px;font-size:16px;flex:1;min-width:0;width:100%;box-sizing:border-box}
+#zm{position:fixed;display:none;z-index:20;right:calc(env(safe-area-inset-right,0px) + 14px);top:calc(env(safe-area-inset-top,0px) + 110px);flex-direction:column;gap:6px}.play #zm{display:flex}.typing #zm{display:none!important}#zm .b{width:38px;height:38px;font-size:20px;padding:0;background:rgba(21,23,26,.75)}
+#maps{flex-wrap:wrap;max-width:260px}
+#srv{position:fixed;top:0;left:0;right:0;height:var(--vh,100%);z-index:55;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.6)}
+.sc{background:var(--bg);color:var(--tx);border:1px solid #3a3d44;border-radius:16px;padding:12px;width:min(420px,92vw);max-height:84%;overflow:auto;font-family:system-ui,Arial}.sc .b{margin:4px 4px 8px 0}
+#auth{position:fixed;top:0;left:0;right:0;height:var(--vh,100%);z-index:60;display:flex;overflow:auto;background:radial-gradient(circle at 30% 20%,#2a3f6a,#15171a 70%);font-family:system-ui,Arial;color:var(--tx)}
+.ac{margin:auto;background:rgba(30,32,36,.95);border:1px solid #3a3d44;border-radius:18px;padding:16px;width:min(340px,92vw);box-sizing:border-box}
+.ac input{width:100%;box-sizing:border-box;background:var(--card);color:#fff;border:1px solid #4b4f57;border-radius:8px;padding:9px;font-size:16px;margin-top:8px}
+.tabs{display:flex;gap:6px}.tabs .b{flex:1}.tabs .b.on{background:var(--acc)}#amsg{color:#ff6b6b;font-size:12px;min-height:16px;margin-top:6px}
+#toast{position:fixed;left:50%;transform:translateX(-50%);top:calc(env(safe-area-inset-top,0px) + 44px);background:rgba(0,0,0,.85);color:#fff;padding:8px 14px;border-radius:10px;z-index:70;opacity:0;transition:opacity .3s;pointer-events:none;font:13px system-ui,Arial}
 </style></head><body>
 <canvas id="cv"></canvas>
 <div id="rot">Gire o celular para o modo paisagem ↻</div>
 <div id="bar"><span id="logo">BLOCKSVERSE</span><button class="b" id="bc">Chat</button><b id="mn"></b><button class="b" id="bm">Mapas</button><button class="b" id="bf" title="Tela cheia">⛶</button><button class="b" id="bx" title="Menu">☰</button><div id="hpw"><div id="hp"></div></div></div>
-<div id="maps"><button class="b" data-m="0">Hangout</button> <button class="b" data-m="1">Parkour</button></div>
+<div id="maps"><button class="b" data-m="0">Hangout</button> <button class="b" data-m="1">Parkour</button> <button class="b" id="bsv">Servidores</button></div>
 <div id="chat"><div id="log"></div><input id="cin" maxlength="60" placeholder="Digite e Enter" autocomplete="off"><button class="b" id="cs" style="padding:1px 6px">›</button></div>
-<div id="joy"><div id="knob"></div></div><div id="jump"><svg viewBox="0 0 40 40" width="50" height="50" stroke="#222" stroke-width="1" stroke-linejoin="round"><rect x="11" y="14" width="5" height="11" fill="#f5cd30" transform="rotate(150 13.5 14)"/><rect x="24" y="14" width="5" height="11" fill="#f5cd30" transform="rotate(-150 26.5 14)"/><rect x="14" y="25" width="5" height="10" fill="#a4bd47" transform="rotate(25 16.5 25)"/><rect x="21" y="25" width="5" height="10" fill="#a4bd47" transform="rotate(-25 23.5 25)"/><rect x="14" y="13" width="12" height="12" fill="#0d69ac"/><rect x="16" y="3" width="8" height="8" fill="#f5cd30"/><circle cx="18.2" cy="6.5" r=".8" fill="#222" stroke="none"/><circle cx="21.8" cy="6.5" r=".8" fill="#222" stroke="none"/></svg></div><div id="lk" title="Shift Lock">⇧</div>
-<div id="menu"><div id="pages"><div class="pg" id="pgHome"><div class="top"><span id="av0"></span><div style="flex:1;min-width:0"><div id="hi" style="font-weight:800;font-size:18px;margin-bottom:4px"></div><input id="name2" maxlength="16" placeholder="Seu nome de usuário"></div><button class="b sel" id="pl2" style="padding:12px 20px;font-size:16px">▶ Jogar</button></div><div class="sec">Amigos</div><div class="row" id="frRow"></div><div class="sec">Continuar jogando</div><div class="row" id="cards"></div></div><div class="pg" id="pgGames"><div class="sec" style="font-size:18px">Jogos</div><div class="grid" id="cards2"></div></div><div class="pg" id="pgFr"><div class="sec" style="font-size:18px">Amigos</div><div class="addf"><input id="fin" maxlength="16" placeholder="Nome do amigo"><button class="b sel" id="fadd">Adicionar</button></div><div class="sec">Seus amigos</div><div id="flist"></div><div class="sec">Online agora</div><div id="olist"></div></div></div><div id="nav"><button><i>🏠</i>Início</button><button><i>🎮</i>Jogos</button><button><i>🧍</i>Avatar</button><button><i>👥</i>Amigos</button></div><div class="panel" id="pAv"><h1>BLOCKSVERSE</h1>
+<div id="joy"><div id="knob"></div></div><div id="jump"><svg viewBox="0 0 40 40" width="50" height="50" stroke="#222" stroke-width="1" stroke-linejoin="round"><rect x="11" y="14" width="5" height="11" fill="#f5cd30" transform="rotate(150 13.5 14)"/><rect x="24" y="14" width="5" height="11" fill="#f5cd30" transform="rotate(-150 26.5 14)"/><rect x="14" y="25" width="5" height="10" fill="#a4bd47" transform="rotate(25 16.5 25)"/><rect x="21" y="25" width="5" height="10" fill="#a4bd47" transform="rotate(-25 23.5 25)"/><rect x="14" y="13" width="12" height="12" fill="#0d69ac"/><rect x="16" y="3" width="8" height="8" fill="#f5cd30"/><circle cx="18.2" cy="6.5" r=".8" fill="#222" stroke="none"/><circle cx="21.8" cy="6.5" r=".8" fill="#222" stroke="none"/></svg></div><div id="lk" title="Shift Lock">⇧</div><div id="zm"><button class="b" id="zi">+</button><button class="b" id="zo">−</button></div>
+<div id="auth"><div class="ac"><h1 style="margin:0 0 4px;font:800 24px system-ui,Arial;color:#3aa0ff">BLOCKSVERSE</h1><div style="color:var(--mut);font-size:12px;margin-bottom:10px">Entre ou crie a sua conta</div><div class="tabs"><button class="b on" id="atl">Entrar</button><button class="b" id="atr">Criar conta</button></div><input id="aun" maxlength="16" placeholder="Usuário" autocomplete="username"><input id="apw" type="password" placeholder="Senha" autocomplete="current-password"><div id="amsg"></div><button id="ago" class="b sel" style="width:100%;margin-top:10px;padding:10px;font-size:16px">Entrar</button></div></div><div id="srv"></div><div id="menu"><div id="pages"><div class="pg" id="pgHome"><div class="top"><span id="av0"></span><div style="flex:1;min-width:0"><div id="hi" style="font-weight:800;font-size:18px;margin-bottom:4px"></div><input id="name2" maxlength="16" placeholder="Seu nome de usuário"></div><button class="b sel" id="pl2" style="padding:12px 20px;font-size:16px">▶ Jogar</button></div><div class="sec">Amigos</div><div class="row" id="frRow"></div><div class="sec">Continuar jogando</div><div class="row" id="cards"></div><button class="b" id="lo" style="margin:14px 0">Sair da conta</button></div><div class="pg" id="pgGames"><div class="sec" style="font-size:18px">Jogos</div><div class="grid" id="cards2"></div></div><div class="pg" id="pgFr"><div class="sec" style="font-size:18px">Amigos</div><div class="addf"><input id="fin" maxlength="16" placeholder="Nome do amigo"><button class="b sel" id="fadd">Adicionar</button></div><div class="sec">Seus amigos</div><div id="flist"></div><div class="sec">Online agora</div><div id="olist"></div></div></div><div id="nav"><button><i>🏠</i>Início</button><button><i>🎮</i>Jogos</button><button><i>🧍</i>Avatar</button><button><i>👥</i>Amigos</button></div><div class="panel" id="pAv"><h1>BLOCKSVERSE</h1>
 <label>Nome de usuário</label><input id="name" maxlength="16">
 <label>Cores do avatar</label><div id="cols"></div>
 <label>Rosto</label><select id="face"></select><div id="sty"></div>
@@ -209,11 +218,11 @@ function loadMap(i){MAPI=i;if(world)scene.remove(world);world=new THREE.Group();
 
 /* ---------- Jogador ---------- */
 const me={g:null,x:0,y:0,z:0,vy:0,ry:0,gr:false,hp:100,sp:0,ph:0,bub:null,exp:0};
-function setAv(){if(me.g)scene.remove(me.g);me.g=mkAv(C,F,NAME,S);scene.add(me.g)}
+function setAv(){if(me.g)scene.remove(me.g);me.g=mkAv(C,F,NAME,S);saveAcc();scene.add(me.g)}
 function resetP(){me.x=spawn.x;me.y=spawn.y;me.z=spawn.z;me.vy=0;me.hp=100}
 function hit(px,py,pz,e=0,kk){for(const b of solids){if(kk&&!b.k)continue;
  if(px+.8>b.x0-e&&px-.8<b.x1+e&&py+5>b.y0-e&&py<b.y1+e&&pz+.8>b.z0-e&&pz-.8<b.z1+e)return b}}
-let lock=false,yaw=0,pit=.45,dist=14,jx=0,jy=0,jmp=false,cool=0;const keys={};
+let lock=false,yaw=0,pit=.45,dist=14,jx=0,jy=0,jmp=false,cool=0,pd=null;const keys={};
 function phys(dt){
  let ix=(keys.KeyD||keys.ArrowRight?1:0)-(keys.KeyA||keys.ArrowLeft?1:0)+jx,iz=(keys.KeyW||keys.ArrowUp?1:0)-(keys.KeyS||keys.ArrowDown?1:0)-jy;
  const mag=Math.min(1,Math.hypot(ix,iz));let dx=0,dz=0;
@@ -234,33 +243,36 @@ function phys(dt){
  if(MAPI==1&&me.gr)for(const q of rests)if(Math.abs(me.x-q.x)<q.s/2&&Math.abs(me.z-q.z)<q.s/2&&Math.abs(me.y-q.y)<.3)spawn={x:q.x,y:q.y+.1,z:q.z};
  if(me.hp<=0||me.y<-50)resetP();
  const now=performance.now();
- for(const q of portals)if(now>cool&&Math.hypot(me.x-q.x,me.z-q.z)<3&&Math.abs(me.y-q.y)<6){cool=now+2500;loadMap(q.to);break}
+ for(const q of portals)if(now>cool&&Math.hypot(me.x-q.x,me.z-q.z)<3&&Math.abs(me.y-q.y)<6){cool=now+2500;joinAuto(q.to);break}
  const p=$('hp');p.style.width=me.hp+'%';p.style.background=me.hp>50?'#3c3':me.hp>25?'#ec3':'#e33'}
 
 /* ---------- Multiplayer (BroadcastChannel + WebSocket opcional) ---------- */
-const WS_URL='';/* ex.: 'wss://seu-servidor/sala' (servidor deve repassar o JSON a todos) */
+/* WebSocket global: '' = só mesmo navegador (BroadcastChannel) | 'auto' = mesmo host que serviu a página | 'wss://seu-app.glitch.me' */
+const WS_URL='';
+let WHO={},ROOMS={},SRV=1;const NSRV=8,MAXP=10,roomId=()=>MAPI+'-'+SRV;
 const ID=Math.random().toString(36).slice(2),R={};let ws=null;
 const bc=window.BroadcastChannel?new BroadcastChannel('classic-hangout-v1'):null;
 function tx(m){m.id=ID;if(bc)bc.postMessage(m);if(ws&&ws.readyState==1)ws.send(JSON.stringify(m))}
 if(bc)bc.onmessage=e=>rx(e.data);
-if(WS_URL){try{ws=new WebSocket(WS_URL);ws.onmessage=e=>rx(JSON.parse(e.data))}catch(e){}}
+function wsConnect(){if(!WS_URL)return;try{ws=new WebSocket(WS_URL==='auto'?(location.protocol=='https:'?'wss://':'ws://')+location.host:WS_URL);ws.onopen=()=>tx({t:'hello',n:NAME});ws.onmessage=e=>{try{rx(JSON.parse(e.data))}catch(x){}};ws.onclose=()=>setTimeout(wsConnect,3000)}catch(e){}}
+wsConnect();
 function dropR(id){if(R[id]){scene.remove(R[id].g);delete R[id]}}
-function rx(m){if(!m||m.id==ID)return;let r=R[m.id];
+function rx(m){if(!m||m.id==ID)return;if(m.t=='rooms'){ROOMS=m.counts||{};WHO=m.who||{};return}let r=R[m.id];
  if(m.t=='s'){const sig=JSON.stringify([m.c,m.f,m.n,m.s]);
-  if(!r||r.sig!=sig){const old=r;dropR(m.id);r=R[m.id]={sig,n:m.n,g:mkAv(m.c,m.f,m.n,m.s),tp:new THREE.Vector3(m.p[0],m.p[1],m.p[2]),ry:m.r,sp:0,ph:0,bub:null,exp:0,m:m.m};
+  if(!r||r.sig!=sig){const old=r;dropR(m.id);r=R[m.id]={sig,n:m.n,g:mkAv(m.c,m.f,m.n,m.s),tp:new THREE.Vector3(m.p[0],m.p[1],m.p[2]),ry:m.r,sp:0,ph:0,bub:null,exp:0,m:m.m,room:m.room};
    r.g.position.copy(r.tp);scene.add(r.g);if(old)r.g.position.copy(old.g.position)}
-  r.tp.set(m.p[0],m.p[1],m.p[2]);r.ry=m.r;r.m=m.m;r.last=performance.now()}
- else if(m.t=='c'){addLog(m.n,m.x);if(r)bubble(r,m.x)}
+  r.tp.set(m.p[0],m.p[1],m.p[2]);r.ry=m.r;r.m=m.m;r.room=m.room;r.last=performance.now()}
+ else if(m.t=='c'&&m.room===roomId()){addLog(m.n,m.x);if(r)bubble(r,m.x)}
  else if(m.t=='b')dropR(m.id)}
 addEventListener('beforeunload',()=>tx({t:'b'}));
 let lastTx=0;
 function sendState(now){if(now-lastTx<100)return;lastTx=now;
- tx({t:'s',n:NAME,c:C,f:F,s:S,m:MAPI,p:[+me.x.toFixed(2),+me.y.toFixed(2),+me.z.toFixed(2)],r:+me.ry.toFixed(2)})}
+ tx({t:'s',n:NAME,c:C,f:F,s:S,room:roomId(),srv:SRV,m:MAPI,p:[+me.x.toFixed(2),+me.y.toFixed(2),+me.z.toFixed(2)],r:+me.ry.toFixed(2)})}
 
 /* ---------- Chat ---------- */
 function addLog(n,t){const d=document.createElement('div'),b=document.createElement('b');b.textContent=n+': ';d.appendChild(b);d.appendChild(document.createTextNode(t));
  const l=$('log');l.appendChild(d);l.scrollTop=l.scrollHeight}
-function sendChat(){const i=$('cin'),t=i.value.trim();i.value='';if(!t)return;addLog(NAME,t);bubble(me,t);tx({t:'c',n:NAME,x:t});if(document.body.classList.contains('touch'))i.blur()}
+function sendChat(){const i=$('cin'),t=i.value.trim();i.value='';if(!t)return;addLog(NAME,t);bubble(me,t);tx({t:'c',n:NAME,x:t,room:roomId()});if(document.body.classList.contains('touch'))i.blur()}
 $('cs').onclick=sendChat;
 if(!(document.fullscreenEnabled||document.webkitFullscreenEnabled))$('bf').style.display='none';
 $('bf').onclick=()=>{try{const d=document,e=d.documentElement;if(d.fullscreenElement||d.webkitFullscreenElement)(d.exitFullscreen||d.webkitExitFullscreen).call(d);
@@ -274,15 +286,15 @@ $('bm').onclick=()=>{const c=$('maps');c.style.display=c.style.display=='flex'?'
 /* ---------- Menu ---------- */
 const MAPS=[{n:'Hangout',d:'Praça, casas e prédios para conversar',c:'linear-gradient(135deg,#4a9c3a,#87c6ff)',e:'🏙️'},{n:'Parkour',d:'Suba até o céu e descanse nas plataformas',c:'linear-gradient(135deg,#7b2ff7,#ff4a1a)',e:'🌋'}];
 let FR=[],TAB=0;try{FR=JSON.parse(localStorage.getItem('bvfr')||'[]')}catch(e){}
-const saveFr=()=>{try{localStorage.setItem('bvfr',JSON.stringify(FR))}catch(e){}},onl=()=>Object.values(R).map(r=>r.n);
+const saveFr=()=>{try{localStorage.setItem('bvfr_'+(U||''),JSON.stringify(FR))}catch(e){}},onl=()=>[...Object.values(R).map(r=>r.n),...Object.keys(WHO)].filter(n=>n!=NAME);
 function cards(el){el.innerHTML='';MAPS.forEach((m,i)=>{const n=Object.values(R).filter(r=>r.m===i).length,d=document.createElement('div');d.className='card';
  d.innerHTML='<div class="th" style="background:'+m.c+'">'+m.e+'</div><b>'+m.n+'</b><small>'+m.d+'</small><small>🟢 '+n+' online</small>';
- const b=document.createElement('button');b.className='b sel';b.textContent='Jogar';b.onclick=()=>startGame(i);d.appendChild(b);el.appendChild(d)})}
+ const b=document.createElement('button');b.className='b sel';b.textContent='Jogar';b.onclick=()=>openServers(i);d.appendChild(b);el.appendChild(d)})}
 function row(n,on,bt,fn){const d=document.createElement('div');d.className='fr';const b=document.createElement('span');b.className='bd';b.textContent=(n[0]||'?').toUpperCase();const dot=document.createElement('i');if(on)dot.className='on';b.appendChild(dot);
- const t=document.createElement('div');t.className='fn';const s=document.createElement('b');s.textContent=n;const st=document.createElement('small');st.textContent=on?'Online agora':'Offline';t.append(s,st);d.append(b,t);
+ const t=document.createElement('div');t.className='fn';const s=document.createElement('b');s.textContent=n;const st=document.createElement('small');st.textContent=on?('Online'+(where(n)?' · '+where(n):'')):'Offline';t.append(s,st);d.append(b,t);
  if(bt){const x=document.createElement('button');x.className='b';x.textContent=bt;x.onclick=fn;d.appendChild(x)}return d}
 function renderFr(){const o=onl(),fl=$('flist'),ol=$('olist'),rw=$('frRow');fl.innerHTML=ol.innerHTML=rw.innerHTML='';
- FR.forEach(n=>{fl.appendChild(row(n,o.includes(n),'Remover',()=>{FR=FR.filter(x=>x!=n);saveFr();renderFr()}));const c=row(n,o.includes(n));c.className='fr mini';rw.appendChild(c)});
+ FR.forEach(n=>{const on=o.includes(n),rr=row(n,on,'Remover',()=>{FR=FR.filter(x=>x!=n);saveFr();renderFr()});if(on&&whereF(n)){const j=document.createElement('button');j.className='b sel';j.textContent='Entrar';j.onclick=()=>joinFriend(n);rr.insertBefore(j,rr.lastChild)}fl.appendChild(rr);const c=row(n,on);c.className='fr mini';rw.appendChild(c)});
  if(!FR.length){fl.textContent='Nenhum amigo ainda.';rw.textContent='Adicione amigos na aba Amigos.'}
  [...new Set(o)].forEach(n=>ol.appendChild(row(n,true,FR.includes(n)?'':'Adicionar',()=>{FR.push(n);saveFr();renderFr()})));
  if(!o.length)ol.textContent='Ninguém online agora. Abra o jogo em outra aba para testar.'}
@@ -294,6 +306,44 @@ document.querySelectorAll('#nav button').forEach((b,k)=>b.onclick=()=>tab(k));
 $('name2').oninput=e=>{NAME=e.target.value.slice(0,16)||'Player';$('name').value=e.target.value;setAv();$('hi').textContent='Olá, '+NAME;$('av0').textContent=(NAME[0]||'?').toUpperCase()};
 $('fadd').onclick=()=>{const n=$('fin').value.trim().slice(0,16);if(n&&!FR.includes(n)&&n!=NAME){FR.push(n);saveFr()}$('fin').value='';renderFr()};
 setInterval(()=>{if(!playing&&$('menu').style.display!='none'&&TAB!=2){cards($('cards'));cards($('cards2'));renderFr()}},1500);
+const cnt=room=>(ws&&ws.readyState==1&&ROOMS[room]!=null)?ROOMS[room]:Object.values(R).filter(r=>r.room===room).length;
+function autoSrv(m){for(let k=1;k<=NSRV;k++)if(cnt(m+'-'+k)<MAXP)return k;return 0}
+function toast(t){let e=$('toast');if(!e){e=document.createElement('div');e.id='toast';document.body.appendChild(e)}e.textContent=t;e.style.opacity=1;clearTimeout(e._t);e._t=setTimeout(()=>e.style.opacity=0,2500)}
+function openServers(m){const s=$('srv');s.innerHTML='';s.style.display='flex';const c=document.createElement('div');c.className='sc';
+ const h=document.createElement('div');h.className='sec';h.textContent='Servidores · '+MAPS[m].n+' (máx. '+MAXP+' jogadores)';
+ const a=document.createElement('button');a.className='b sel';a.textContent='⚡ Entrar automaticamente';a.onclick=()=>{s.style.display='none';startGame(m)};
+ const x=document.createElement('button');x.className='b';x.textContent='Fechar';x.onclick=()=>s.style.display='none';c.append(h,a,x);
+ for(let k=1;k<=NSRV;k++){const n=cnt(m+'-'+k),f=n>=MAXP,r=document.createElement('div');r.className='fr';
+  r.innerHTML='<div class="fn"><b>Servidor '+k+'</b><small>'+n+'/'+MAXP+' jogadores'+(f?' · Cheio':'')+'</small></div>';
+  const b=document.createElement('button');b.className='b'+(f?'':' sel');b.textContent=f?'Cheio':'Entrar';b.disabled=f;b.onclick=()=>{s.style.display='none';startGame(m,k)};r.appendChild(b);c.appendChild(r)}
+ s.appendChild(c)}
+function joinAuto(m){const s=autoSrv(m);if(!s){toast('Todos os servidores estão cheios');return}tx({t:'b'});SRV=s;loadMap(m);$('mn').textContent=NAME+' · Servidor '+SRV}
+function whereF(n){const r=Object.values(R).find(x=>x.n==n);return r?r.room:(WHO[n]||null)}
+function where(n){const w=whereF(n);if(!w)return'';const p=w.split('-');return (MAPS[p[0]]?MAPS[p[0]].n:'?')+' · Servidor '+p[1]}
+function joinFriend(n){const w=whereF(n);if(!w){toast('Amigo não encontrado');return}const p=w.split('-').map(Number);if(cnt(w)>=MAXP){toast('O servidor do amigo está cheio');return}startGame(p[0],p[1])}
+$('bsv').onclick=()=>{$('maps').style.display='none';openServers(MAPI)};
+$('zi').onclick=()=>{dist=Math.max(3,dist-3)};$('zo').onclick=()=>{dist=Math.min(40,dist+3)};
+const ACC=()=>{try{return JSON.parse(localStorage.getItem('bvacc')||'{}')}catch(e){return{}}},setACC=a=>{try{localStorage.setItem('bvacc',JSON.stringify(a))}catch(e){}};
+let U=null,AM='login';
+async function sha(s){if(window.crypto&&crypto.subtle){const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode('bv:'+s));return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('')}let h=5381;for(const ch of s)h=(h*33^ch.charCodeAt(0))>>>0;return 'x'+h}
+function saveAcc(){if(!U)return;const a=ACC();if(a[U]){a[U].C=C;a[U].S=S;a[U].f=F;setACC(a)}}
+function authMode(m){AM=m;$('atl').classList.toggle('on',m=='login');$('atr').classList.toggle('on',m=='reg');$('ago').textContent=m=='login'?'Entrar':'Criar conta';$('amsg').textContent=''}
+function loginAs(k){const a=ACC()[k];if(!a)return;U=k;if(a.C)Object.assign(C,a.C);if(a.S)Object.assign(S,a.S);if(a.f!=null)F=a.f;NAME=a.n;
+ try{localStorage.setItem('bvsess',k);FR=JSON.parse(localStorage.getItem('bvfr_'+k)||'[]')}catch(e){FR=[]}
+ $('auth').style.display='none';$('apw').value='';['name','name2'].forEach(i=>{$(i).value=NAME;$(i).readOnly=true});
+ document.querySelectorAll('#cols input').forEach((el,i)=>el.value=C[PARTS[i][0]]);
+ [...document.querySelectorAll('#sty select')].forEach((el,i)=>el.value=S[['hr','ht','sh','bt'][i]]);$('face').value=F;setAv();tab(0)}
+$('atl').onclick=()=>authMode('login');$('atr').onclick=()=>authMode('reg');
+$('ago').onclick=async()=>{const u=$('aun').value.trim(),p=$('apw').value,k=u.toLowerCase(),m=$('amsg');
+ if(!/^[A-Za-z0-9_]{3,16}$/.test(u)){m.textContent='Usuário: 3 a 16 letras, números ou _';return}
+ if(p.length<4){m.textContent='Senha: mínimo de 4 caracteres';return}
+ const a=ACC(),h=await sha(k+':'+p);
+ if(AM=='reg'){if(a[k]){m.textContent='Esse usuário já existe';return}a[k]={n:u,h,C,S,f:F};setACC(a)}
+ else if(!a[k]||a[k].h!==h){m.textContent='Usuário ou senha incorretos';return}
+ loginAs(k)};
+$('apw').addEventListener('keydown',e=>{if(e.key=='Enter')$('ago').click()});
+$('lo').onclick=()=>{try{localStorage.removeItem('bvsess')}catch(e){}U=null;$('apw').value='';$('amsg').textContent='';$('auth').style.display='flex'};
+try{const sk=localStorage.getItem('bvsess');if(sk&&ACC()[sk])loginAs(sk)}catch(e){}
 $('name').value=NAME;let spin=false;$('spin').onclick=()=>{spin=!spin;$('spin').textContent='↻ Girar boneco: '+(spin?'ligado':'desligado')};
 PARTS.forEach(([k,l])=>{const d=document.createElement('div');d.innerHTML=l+'<br>';const i=document.createElement('input');i.type='color';i.value=C[k];
  i.oninput=()=>{C[k]=i.value;setAv()};d.appendChild(i);$('cols').appendChild(d)});
@@ -303,10 +353,10 @@ const HAIR=['Sem cabelo','Curto','Longo','Moicano','Coque'],HAT=['Sem chapéu','
 [['hr','Cabelo',HAIR],['ht','Chapéu',HAT],['sh','Camisa',SHIRT],['bt','Calça',BOT]].forEach(([k,l,a])=>{const d=document.createElement('div');d.innerHTML='<label>'+l+'</label>';const e=document.createElement('select');e.style.cssText='width:100%;padding:3px';
  a.forEach((t,i)=>{const o=document.createElement('option');o.value=i;o.textContent=t;e.appendChild(o)});e.value=S[k];e.onchange=()=>{S[k]=+e.value;setAv()};d.appendChild(e);$('sty').appendChild(d)});
 $('name').oninput=e=>{NAME=e.target.value.slice(0,16)||'Player';$('name2').value=e.target.value;setAv()};
-document.querySelectorAll('[data-m]').forEach(b=>b.addEventListener('click',()=>{loadMap(+b.dataset.m);if(playing)$('maps').style.display='none'}));
-function startGame(m){if(m!=null&&m!==MAPI)loadMap(m);NAME=($('name').value.trim()||NAME).slice(0,16);setAv();
- try{localStorage.setItem('chr',JSON.stringify({C,S,n:NAME,f:F}))}catch(e){}
- $('menu').style.display='none';document.body.classList.add('play');$('mn').textContent=NAME;playing=true;resize();yaw=0;pit=.45;dist=14;resetP()}
+document.querySelectorAll('[data-m]').forEach(b=>b.addEventListener('click',()=>{if(playing){joinAuto(+b.dataset.m);$('maps').style.display='none'}else loadMap(+b.dataset.m)}));
+function startGame(m,srv){if(!U){$('auth').style.display='flex';return}if(m==null)m=MAPI;if(!srv)srv=autoSrv(m);if(!srv){toast('Todos os servidores estão cheios');return}if(cnt(m+'-'+srv)>=MAXP){toast('Servidor cheio');return}SRV=srv;loadMap(m);NAME=($('name').value.trim()||NAME).slice(0,16);setAv();
+ saveAcc();
+ $('menu').style.display='none';document.body.classList.add('play');$('mn').textContent=NAME+' · Servidor '+SRV;playing=true;resize();yaw=0;pit=.45;dist=14;resetP()}
 $('play').onclick=()=>startGame();$('pl2').onclick=()=>startGame();
 function openMenu(){tx({t:'b'});playing=false;if(lock)setLock(false);document.body.classList.remove('play','typing');$('menu').style.display='flex';$('chat').style.display=$('maps').style.display='none';resize();tab(1)}
 $('bx').onclick=openMenu;
@@ -320,7 +370,7 @@ addEventListener('keyup',e=>{keys[e.code]=0});
 let drag=false;
 cv.addEventListener('mousedown',()=>drag=true);addEventListener('mouseup',()=>drag=false);
 addEventListener('mousemove',e=>{if(!drag&&!(lock&&document.pointerLockElement))return;yaw-=e.movementX*.006;if(playing)pit=Math.max(-1.3,Math.min(1.4,pit+e.movementY*.006))});
-cv.addEventListener('wheel',e=>{dist=Math.max(6,Math.min(30,dist+e.deltaY*.02))});
+cv.addEventListener('wheel',e=>{dist=Math.max(3,Math.min(40,dist+e.deltaY*.02))});
 cv.addEventListener('contextmenu',e=>e.preventDefault());
 const jb=$('joy'),kn=$('knob');let jid=null,cid=null,pid=null,lx=0,ly=0;
 function jmove(t){const r=jb.getBoundingClientRect(),R0=r.width/2;let dx=t.clientX-r.left-R0,dy=t.clientY-r.top-R0;const l=Math.hypot(dx,dy);
@@ -330,11 +380,11 @@ addEventListener('touchstart',e=>{const ae=document.activeElement;if(e.target===
  else if(el.id=='jump'){pid=t.identifier;jmp=true}
  else if(el===cv&&t.clientX>innerWidth/2&&cid==null){cid=t.identifier;lx=t.clientX;ly=t.clientY}}
  if(e.target===cv||jb.contains(e.target)||e.target.id=='jump')e.preventDefault()},{passive:false});
-addEventListener('touchmove',e=>{for(const t of e.changedTouches){
+addEventListener('touchmove',e=>{if(playing&&e.touches.length==2&&e.touches[0].target===cv&&e.touches[1].target===cv){const d=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY);if(pd)dist=Math.max(3,Math.min(40,dist-(d-pd)*.06));pd=d}for(const t of e.changedTouches){
  if(t.identifier===jid)jmove(t);
  else if(t.identifier===cid){yaw-=(t.clientX-lx)*.008;if(playing)pit=Math.max(-1.3,Math.min(1.4,pit+(t.clientY-ly)*.008));lx=t.clientX;ly=t.clientY}}
  if(playing&&e.target===cv)e.preventDefault()},{passive:false});
-const tend=e=>{for(const t of e.changedTouches){
+const tend=e=>{pd=null;for(const t of e.changedTouches){
  if(t.identifier===jid){jid=null;jx=jy=0;kn.style.transform=''}
  if(t.identifier===cid)cid=null;if(t.identifier===pid){pid=null;jmp=false}}};
 addEventListener('touchend',tend);addEventListener('touchcancel',tend);
@@ -347,13 +397,13 @@ function loop(now){requestAnimationFrame(loop);const dt=Math.min(.05,(now-last)/
  me.g.position.set(me.x,me.y,me.z);me.g.rotation.y=playing?me.ry:0;animAv(me.g,me.sp,me.ph,!me.gr&&playing);
  if(me.bub&&now>me.exp){me.g.remove(me.bub);me.bub=null}
  for(const id in R){const r=R[id];if(r.last&&now-r.last>4000){dropR(id);continue}
-  r.g.visible=r.m===MAPI;const px=r.g.position.x,pz=r.g.position.z;
+  r.g.visible=r.room===roomId();const px=r.g.position.x,pz=r.g.position.z;
   r.g.position.lerp(r.tp,Math.min(1,dt*10));
   const v=Math.hypot(r.g.position.x-px,r.g.position.z-pz)/dt/16;r.sp+=(Math.min(1,v)-r.sp)*Math.min(1,dt*10);r.ph+=dt*r.sp*11;
   let d=r.ry-r.g.rotation.y;d=Math.atan2(Math.sin(d),Math.cos(d));r.g.rotation.y+=d*Math.min(1,dt*12);
   animAv(r.g,r.sp,r.ph,Math.abs(r.g.position.y-r.tp.y)>.4);
   if(r.bub&&now>r.exp){r.g.remove(r.bub);r.bub=null}}
- const L_=playing&&lock,dd=playing?(L_?Math.min(dist,9):dist):10,pp=playing?pit:.2,tx_=me.x+(L_?Math.cos(yaw)*2:0),ty=me.y+3.2,tz=me.z+(L_?-Math.sin(yaw)*2:0);
+ const L_=playing&&lock,dd=playing?dist:10,pp=playing?pit:.2,tx_=me.x+(L_?Math.cos(yaw)*2:0),ty=me.y+3.2,tz=me.z+(L_?-Math.sin(yaw)*2:0);
  const d2=pp<0?Math.max(1.5,Math.min(dd,(ty-me.y-.5)/Math.sin(-pp))):dd;camera.position.set(tx_+Math.sin(yaw)*Math.cos(pp)*d2,Math.max(.4,ty+Math.sin(pp)*d2),tz+Math.cos(yaw)*Math.cos(pp)*d2);
  camera.lookAt(tx_,ty,tz);renderer.render(scene,camera)}
 requestAnimationFrame(loop);
