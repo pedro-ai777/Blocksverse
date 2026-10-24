@@ -248,7 +248,7 @@ function phys(dt){
 
 /* ---------- Multiplayer (BroadcastChannel + WebSocket opcional) ---------- */
 /* WebSocket global: '' = só mesmo navegador (BroadcastChannel) | 'auto' = mesmo host que serviu a página | 'wss://seu-app.glitch.me' */
-const WS_URL='';
+const WS_URL='wss://blocksverse-server--Pedropaz9090.replit.app';
 let WHO={},ROOMS={},SRV=1;const NSRV=8,MAXP=10,roomId=()=>MAPI+'-'+SRV;
 const ID=Math.random().toString(36).slice(2),R={};let ws=null;
 const bc=window.BroadcastChannel?new BroadcastChannel('classic-hangout-v1'):null;
